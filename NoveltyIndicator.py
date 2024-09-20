@@ -34,6 +34,7 @@ def generate_int_id(string_id):
 
 def prepare_data_for_novelpy(data):
     prepared_data = []
+
     for item in data:
         try:
             if 'id' not in item:
@@ -53,6 +54,18 @@ def prepare_data_for_novelpy(data):
                     for inst in author['institutions']:
                         institutions.append(inst.get('display_name', ''))
 
+            # Extraction des variables supplémentaires avec prise en compte des exceptions
+            keyword_analysis = item.get('keyword_analysis', 'Missing')
+            collaborative_index = item.get('collaborative_index', 'Missing')
+            license_info = item.get('license', 'Missing')
+            journal_impact_factor = item.get('journal_impact_factor', 'Missing')
+            citations_geographical = item.get('citations_geographical', 'Missing')
+            page_count = item.get('page_count', 'Missing')
+            publisher = item.get('host_venue', {}).get('publisher', 'Missing')
+            apc_paid = item.get('apc_paid', 'Missing')
+            open_access_status = item.get('open_access', {}).get('status', 'Missing')
+
+            # Création de l'entrée
             entry = {
                 "PMID": generate_int_id(item['id']),
                 "year": year,
@@ -65,12 +78,26 @@ def prepare_data_for_novelpy(data):
                 "subfield": item.get('concepts', [{}])[0].get('display_name', '') if item.get('concepts') else '',
                 "field": item.get('concepts', [{}])[1].get('display_name', '') if len(item.get('concepts', [])) > 1 else '',
                 "domain": item.get('concepts', [{}])[2].get('display_name', '') if len(item.get('concepts', [])) > 2 else '',
-                "sustainable_development_goals": item.get('sustainable_development_goals', [])
+                "sustainable_development_goals": item.get('sustainable_development_goals', []),
+                
+                # Variables supplémentaires
+                "keyword_analysis": keyword_analysis,
+                "collaborative_index": collaborative_index,
+                "license": license_info,
+                "journal_impact_factor": journal_impact_factor,
+                "citations_geographical": citations_geographical,
+                "page_count": page_count,
+                "publisher": publisher,
+                "apc_paid": apc_paid,
+                "open_access_status": open_access_status
             }
+
             prepared_data.append(entry)
+
         except KeyError as e:
             print(f"KeyError: {e} in item {item.get('id', 'unknown')}")
             continue
+
     return prepared_data
 
 def save_data_by_year(prepared_data, base_dir='Data/docs/references_sample'):
@@ -220,5 +247,9 @@ df.describe()
 df['log_num_authors_SDG'] = np.log(df['num_authors'] + 1)
 df['log_num_authors_squared_SDG'] = df['log_num_authors_SDG']**2
 
+#Add a dummy for articles that refer to a digital technology
+
+
+#DL the DF
 df.describe()
-df.to_csv("DF_SDG", index=False)
+df.to_csv("DF_SDG.csv", index=False)
