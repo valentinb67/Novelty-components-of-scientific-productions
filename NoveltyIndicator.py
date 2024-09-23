@@ -79,8 +79,6 @@ def prepare_data_for_novelpy(data):
                 "field": item.get('concepts', [{}])[1].get('display_name', '') if len(item.get('concepts', [])) > 1 else '',
                 "domain": item.get('concepts', [{}])[2].get('display_name', '') if len(item.get('concepts', [])) > 2 else '',
                 "sustainable_development_goals": item.get('sustainable_development_goals', []),
-                
-                # Variables supplémentaires
                 "keyword_analysis": keyword_analysis,
                 "collaborative_index": collaborative_index,
                 "license": license_info,
@@ -248,7 +246,7 @@ df['log_num_authors_SDG'] = np.log(df['num_authors'] + 1)
 df['log_num_authors_squared_SDG'] = df['log_num_authors_SDG']**2
 
 #Add a dummy for articles that refer to a digital technology
-
+print(df)
 
 #DL the DF
 df.describe()
