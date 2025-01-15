@@ -11,23 +11,39 @@ import numpy as np
 import csv
 import shutil
 
-def get_openalex_data(query, num_results=50):
+def get_top_cited_openalex_data(query, num_results=800):
+    """
+    Récupère les articles OpenAlex les plus cités pour une requête donnée.
+
+    Args:
+        query (str): La requête de recherche.
+        num_results (int): Nombre total d'articles à récupérer.
+
+    Returns:
+        list: Liste des articles triés par nombre de citations décroissant.
+    """
     base_url = "https://api.openalex.org/works"
     results = []
-    per_page = 15
-    
+    per_page = 200
+
     for offset in range(0, num_results, per_page):
-        response = requests.get(f"{base_url}?filter=title.search:{query},from_publication_date:2020-01-01,to_publication_date:2024-12-31&per-page={per_page}&page={offset // per_page + 1}")
+        response = requests.get(
+            f"{base_url}?filter=title.search:{query},from_publication_date:2016-01-01,to_publication_date:2024-12-31"
+            f"&sort=cited_by_count:desc&per-page={per_page}&page={offset // per_page + 1}"
+        )
+        
         if response.status_code == 200:
-            data = response.json()['results']
+            data = response.json().get('results', [])
             results.extend(data)
         else:
             print(f"Erreur : {response.status_code}")
             break
+
         if len(data) < per_page:
+            # Si moins de résultats que prévu, on arrête
             break
 
-    return results
+    return results[:num_results]
 
 def generate_int_id(string_id):
     """Generate a unique integer ID from a string ID using hashing"""
@@ -43,7 +59,7 @@ def prepare_data_for_novelpy(data):
                 continue
 
             year = item.get('publication_year', None)
-            if year is None or not (2020 <= year <= 2024):
+            if year is None or not (2016 <= year <= 2024):
                 print(f"Skipping item outside date range: {item['id']}")
                 continue
 
@@ -176,11 +192,31 @@ def load_data_from_files(start_year, end_year, directory):
     return all_data
 
 # Liste des requêtes
-queries = ["sustainable development goals", "SDG 1"]
+#queries = ["SDG 1", "SDG 2", "SDG 3", "SDG 4", "SDG 5", "SDG 6", "SDG 7", "SDG 8", "SDG 9", "SDG 10",
+#           "SDG 11", "SDG 12", "SDG 13", "SDG 14", "SDG 15", "SDG 16", "SDG 17"]
+queries = [
+    "No Poverty", # SDG 1
+    "Zero Hunger", # SDG 2
+    "SDG 3", # SDG 3
+    "Quality Education", # SDG 4
+    "Gender Equality", # SDG 5
+    "SDG 6", # SDG 6
+    "SDG 7", # SDG 7
+    "SDG 8", # SDG 8
+    "SDG 9", # SDG 9
+    "Reduced Inequality", # SDG 10
+    "Sustainable Cities and Communities", # SDG 11
+    "Responsible Consumption and Production", # SDG 12
+    "Climate Action", # SDG 13
+    "SDG 14", # SDG 14
+    "Life on Land", # SDG 15
+    "SDG 16", # SDG 16
+    "Partnerships for the Goals" # SDG 17
+    ]
 
 for query in queries:
     print(f"Processing query: {query}")
-    data = get_openalex_data(query, num_results=50)
+    data = get_top_cited_openalex_data(query, num_results=800)
     prepared_data = prepare_data_for_novelpy(data)
     save_data_by_year(prepared_data, base_dir=f"Data/docs/references_sample")
     validate_data(prepared_data)
@@ -191,13 +227,13 @@ for query in queries:
         year_var="year",
         var="c04_referencelist",
         sub_var="item",
-        time_window=range(2020, 2025),
+        time_window=range(2016, 2025),
         weighted_network=True, 
         self_loop=True
     )
     ref_cooc.main()
 
-    focal_years = range(2020, 2025)
+    focal_years = range(2016, 2025)
     collection_name = 'references_sample'
     id_variable = 'PMID'
     year_variable = 'year'
@@ -217,7 +253,7 @@ for query in queries:
         Lee.get_indicator()
 
     #Load data for Lee
-    start_year = 2020
+    start_year = 2016
     end_year = 2024
     directory = 'Result/lee/c04_referencelist/'
     data_lee = load_data_from_files(start_year, end_year, directory)
@@ -226,11 +262,11 @@ for query in queries:
     lee_df = convert_to_dataframe_2(data_lee)
     lee_df.describe()
     
-    data = get_openalex_data(query, 50)
+    data = get_top_cited_openalex_data(query, 800)
     prepared_data = prepare_data_for_novelpy(data)
     save_data_by_year(prepared_data)
     
-    start_year = 2020
+    start_year = 2016
     end_year = 2024
     directory = 'Data/docs/references_sample/'
     data = load_data_from_files(start_year, end_year, directory)
