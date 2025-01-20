@@ -5,14 +5,18 @@ We'll start with a sample of 1,000 articles from OpenAlex Database based on the 
 
 # get_location.py
 
-`get_location.py` is a Python script for processing scientific publication data to extract geographic information about authors and their affiliated institutions. It uses the Google Maps Geocoding API and other libraries to map institution names to their respective cities, regions, states, and coordinates.
+`get_location.py` is a Python script designed to process scientific publication data and determine the geographic location of institutions associated with each author. Using the Google Maps Geocoding API, the script extracts detailed location information, such as city, region, state, latitude, and longitude, for every institution listed in the dataset.
 
-## Features
+## Main Purpose
 
-- Converts institution names into geographic details (city, region, state, latitude, longitude).
-- Maps countries to their continents.
-- Processes `.csv` files to normalize and flatten author-institution data.
-- Enriches the dataset with geographic information.
-- Saves the processed data as new `.csv` files for further analysis.
+This script processes `.csv` files containing metadata about publications, including authors and their institutions. For each institution, it identifies its geographic location and enriches the dataset with detailed positional information, making it easier to analyze the geographic distribution of scientific collaborations.
 
-This script is ideal for adding geographic context to publication datasets for research or visualization purposes.
+## Key Features
+
+- Extracts geographic details (city, region, state, latitude, longitude) for each institution using the Google Maps Geocoding API.
+- Associates each author with their respective institution in a row-wise format.
+- Adds missing geographic details by validating latitude and longitude data.
+- Determines the continent of each institution's country for additional context.
+- Saves enriched data to `.csv` files for further analysis or visualization.
+
+This script is particularly useful for researchers and analysts seeking to map the institutional affiliations of authors in scientific datasets and analyze the geographic distribution of their research outputs.
