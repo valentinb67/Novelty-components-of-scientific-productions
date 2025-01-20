@@ -1,7 +1,54 @@
 # Novelty-components-of-scientific-productions
-As part of our Master Data Science for Economy and Business, we want to develop our skills in Data Vizualisation by proposing a Dashboard that will present different components of the novelty of scientific productions from the OpenAlex database.
 
-We'll start with a sample of 1,000 articles from OpenAlex Database based on the keyword “Substainable Development Goal”, the aim is to identify a scientific subfield to define whether the method of the article employs/discusses digital technologies. We will explain the novelty potential of scientific productions talking about SDGs through the use of digital technologies, and to bring out evidence linked to the characteristics of the articles and their production conditions.
+As part of our Master’s program in Data Science for Economics and Business, we aim to enhance our skills in data visualization by developing a Power BI dashboard. This dashboard will showcase various components of the novelty of scientific productions using data from the [OpenAlex database](https://openalex.org/).
+
+We begin with a sample of 1,000 most-cited articles for each Sustainable Development Goal (SDG), based on query keywords associated with the 17 SDGs, covering the period from 2016 to 2024. Novelty is calculated using methods for assessing rarity (Commonness) developed by Lee et al. (2015) (`get_novelty.py`). Additionally, we plan to process spatial data to uncover information about local novelties and clusters (`get_location.py`).
+
+# get_novelty.py
+
+This script is designed to retrieve, process, and analyze scientific publication data from the OpenAlex API, focusing on top-cited works and their associated metadata. It facilitates the analysis of collaboration networks and novelty indicators while saving results in structured formats for further research.
+
+## Main Purpose
+
+The script processes publication data to:
+
+1. Retrieve the most cited works based on specific queries.
+2. Extract and organize metadata such as authors, institutions, citations, and research fields.
+3. Calculate and validate novelty indicators using co-occurrence analysis and the Lee et al. (2015) methodology.
+4. Save structured results for detailed analysis, including collaboration patterns and novelty trends.
+
+## Key Features
+
+### Data Retrieval
+- Queries the OpenAlex API to fetch top-cited publications using customizable search terms.
+- Supports filtering by publication date range (2016–2024) and sorting by citation count.
+
+### Data Preparation
+- Extracts key metadata:
+  - Authors and their affiliated institutions.
+  - Citation counts and referenced works.
+  - Research fields, publication type, and Sustainable Development Goals (SDGs).
+- Handles missing or incomplete data gracefully.
+- Generates unique IDs for publications and referenced works using hashing.
+
+### Novelty and Collaboration Analysis
+- Computes co-occurrence matrices for referenced works.
+- Applies the Lee et al. (2015) indicator to assess research novelty.
+- Supports weighted and time-windowed analysis of reference networks.
+
+### Data Validation
+- Ensures referenced works exist within the dataset.
+- Identifies and logs potential inconsistencies in references.
+
+### Data Storage and Visualization
+- Organizes and saves processed data by publication year in JSON format.
+- Converts processed data into pandas DataFrames for detailed statistical analysis.
+- Saves results, including novelty scores, to `.csv` files.
+- Provides descriptive statistics and summary reports.
+
+### Automation and Cleanup
+- Processes multiple queries iteratively, handling each independently.
+- Cleans up temporary directories and files after processing.
 
 # get_location.py
 
@@ -9,7 +56,9 @@ We'll start with a sample of 1,000 articles from OpenAlex Database based on the 
 
 ## Main Purpose
 
-This script processes `.csv` files containing metadata about publications, including authors and their institutions. For each institution, it identifies its geographic location and enriches the dataset with detailed positional information, making it easier to analyze the geographic distribution of scientific collaborations.
+This script processes 17 `.csv` files, which are derived from `/DataFrames_nov`, containing metadata about publications, including authors and their institutions. For each institution, it identifies its geographic location and enriches the dataset with detailed positional information, making it easier to analyze the geographic distribution of scientific collaborations.
+
+The enriched datasets are then saved as 17 output `.csv` files, which are stored in the `/DataFrames_loc` directory.
 
 ## Key Features
 
@@ -20,3 +69,27 @@ This script processes `.csv` files containing metadata about publications, inclu
 - Saves enriched data to `.csv` files for further analysis or visualization.
 
 This script is particularly useful for researchers and analysts seeking to map the institutional affiliations of authors in scientific datasets and analyze the geographic distribution of their research outputs.
+
+# PBI.pbix:
+
+
+# Development Environment:
+Requirements:
+Python 3.8+
+
+We are using a lightweight version of the **Novelpy** package developed by Kevin Wirtz and Pierre Pelletier (see [GitHub](https://github.com/Kwirtz/novelpy), [Documentation](https://novelpy.readthedocs.io/en/latest/)), which can cause conflicts between packages.
+
+Clone this repository on your local machine :
+```
+git clone https://github.com/valentinb67/Novelty-components-of-scientific-productions
+```
+
+**Navigate to the project directory and install the dependencies :**
+```
+cd Novelty-components-of-scientific-productions
+pip install -r requirements.txt
+```
+To run the application use:
+```
+python run_scripts.py
+```
