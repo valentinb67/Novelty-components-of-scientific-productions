@@ -278,7 +278,7 @@ for query in queries:
     df.describe()
     
     # Conversion en DataFrame et sauvegarde
-    df.to_csv(f"DataFrames/DF_{query}.csv", index=False)
+    df.to_csv(f"DataFrames_loc/DF_{query}.csv", index=False)
     print(df.describe())
     print(f"Data for query '{query}' saved to DF_{query}.csv")
     
