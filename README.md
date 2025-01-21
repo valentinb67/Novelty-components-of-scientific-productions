@@ -73,7 +73,7 @@ This script is particularly useful for researchers and analysts seeking to map t
 # PBI.pbix:
 
 
-![width:120px](Présentation/NoveltySchema.png)
+![width:120px](Presentation/NoveltySchema.png)
 
 # Development Environment:
 Requirements:
