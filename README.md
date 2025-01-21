@@ -72,6 +72,17 @@ This script is particularly useful for researchers and analysts seeking to map t
 
 # PBI.pbix:
 
+This dashboard allows you to explore the novelty indicators for scientific productions on the 17 SDGs since 2016. It consists of 5 pages providing a complete analysis of the current and past situation.
+
+- ‘Summary’ is a page that provides information about a number of SDGs. We can see the number of citations, publications and novelty indicator since 2016 for each author, area of expertise, type of production and the evolution by year.
+
+- ‘Year View’ provides a year-by-year analysis of each SDG. We can see changes in key indicators compared with the previous year, as well as the most active SDGs by type and institution.
+
+- ‘Mapping’ gives you a geographical view of the scientific output situation.
+
+- ‘SDG Comparison’ allows you to compare the key indicators for different SDGs. We offer a view by year, by region and analyse the differences in the link between the number of contributors and the novelty indicator.
+
+- ‘Database’ is a page that allows the user to check the data by being able to sort it.
 
 ![width:120px](Presentation/NoveltySchema.png)
 
