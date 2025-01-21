@@ -4,6 +4,63 @@ As part of our Master’s program in Data Science for Economics and Business, we
 
 We begin with a sample of 1,000 most-cited articles for each Sustainable Development Goal (SDG), based on query keywords associated with the 17 SDGs, covering the period from 2016 to 2024. Novelty is calculated using methods for assessing rarity (Commonness) developed by Lee et al. (2015) (`get_novelty.py`). Additionally, we plan to process spatial data to uncover information about local novelties and clusters (`get_location.py`).
 
+# Our tree
+```
+│   get_location.py
+│   get_novelty.py
+│   Novelty.pbix
+│   README.md
+│   requirements.txt
+│   __init__.py
+│
+├───DataFrames_loc
+│       DF_Climate Action.csv
+│       DF_Gender Equality.csv
+│       DF_Life on Land.csv
+│       DF_No Poverty.csv
+│       DF_Partnerships for the Goals.csv
+│       DF_Quality Education.csv
+│       DF_Reduced Inequality.csv
+│       DF_Responsible Consumption and Production.csv
+│       DF_SDG 14.csv
+│       DF_SDG 16.csv
+│       DF_SDG 3.csv
+│       DF_SDG 6.csv
+│       DF_SDG 7.csv
+│       DF_SDG 8.csv
+│       DF_SDG 9.csv
+│       DF_Sustainable Cities and Communities.csv
+│       DF_Zero Hunger.csv
+│
+├───DataFrames_nov
+│       DF_Climate Action.csv
+│       DF_Gender Equality.csv
+│       DF_Life on Land.csv
+│       DF_No Poverty.csv
+│       DF_Partnerships for the Goals.csv
+│       DF_Quality Education.csv
+│       DF_Reduced Inequality.csv
+│       DF_Responsible Consumption and Production.csv
+│       DF_SDG 14.csv
+│       DF_SDG 16.csv
+│       DF_SDG 3.csv
+│       DF_SDG 6.csv
+│       DF_SDG 7.csv
+│       DF_SDG 8.csv
+│       DF_SDG 9.csv
+│       DF_Sustainable Cities and Communities.csv
+│       DF_Zero Hunger.csv
+│
+└───Presentation
+        NoveltySchema.png
+        Novelty_VBarthel_ABusché_DFracassi.pdf
+```
+
+# Our Diagram
+
+![width:120px](Presentation/NoveltySchema.png)
+
+
 # get_novelty.py
 
 This script is designed to retrieve, process, and analyze scientific publication data from the OpenAlex API, focusing on top-cited works and their associated metadata. It facilitates the analysis of collaboration networks and novelty indicators while saving results in structured formats for further research.
@@ -83,8 +140,6 @@ This dashboard allows you to explore the novelty indicators for scientific produ
 - ‘SDG Comparison’ allows you to compare the key indicators for different SDGs. We offer a view by year, by region and analyse the differences in the link between the number of contributors and the novelty indicator.
 
 - ‘Database’ is a page that allows the user to check the data by being able to sort it.
-
-![width:120px](Presentation/NoveltySchema.png)
 
 # Development Environment:
 Requirements:
