@@ -2,7 +2,7 @@
 
 As part of our Master’s program in Data Science for Economics and Business, we aim to enhance our skills in data visualization by developing a Power BI dashboard. This dashboard will showcase various components of the novelty of scientific productions using data from the [OpenAlex database](https://openalex.org/).
 
-We begin with a sample of 1,000 most-cited articles for each Sustainable Development Goal (SDG), based on query keywords associated with the 17 SDGs, covering the period from 2016 to 2024. Novelty is calculated using methods for assessing rarity (Commonness) developed by Lee et al. (2015) (`get_novelty.py`). Additionally, we plan to process spatial data to uncover information about local novelties and clusters (`get_location.py`).
+We begin with a sample of 800 most-cited articles for each Sustainable Development Goal (SDG), based on query keywords associated with the 17 SDGs, covering the period from 2016 to 2024. Novelty is calculated using methods for assessing rarity (Commonness) developed by Lee et al. (2015) (`get_novelty.py`). Additionally, we plan to process spatial data to uncover information about local novelties and clusters (`get_location.py`).
 
 # Our tree
 ```
