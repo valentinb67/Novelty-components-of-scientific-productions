@@ -1,4 +1,4 @@
-# Novelty-components-of-scientific-productions
+# Novelty-components-of-scientific-productions-for-each-SDG
 
 As part of our Master’s program in Data Science for Economics and Business, we aim to enhance our skills in data visualization by developing a Power BI dashboard. This dashboard will showcase various components of the novelty of scientific productions using data from the [OpenAlex database](https://openalex.org/).
 
