@@ -73,6 +73,8 @@ This script is particularly useful for researchers and analysts seeking to map t
 # PBI.pbix:
 
 
+![width:120px](Présentation/NoveltySchema.png)
+
 # Development Environment:
 Requirements:
 Python 3.8+
