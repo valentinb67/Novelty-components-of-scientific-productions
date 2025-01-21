@@ -1,6 +1,6 @@
 # Novelty-components-of-scientific-productions-for-each-SDG
 
-As part of our Master’s program in Data Science for Economics and Business, we aim to enhance our skills in data visualization by developing a Power BI dashboard. This dashboard will showcase various components of the novelty of scientific productions using data from the [OpenAlex database](https://openalex.org/).
+As part of our Master’s program in Data Science for Economics and Business, we aim to enhance our skills in data visualization by developing a Power BI dashboard. This dashboard will showcase various components of the novelty of scientific productions for each SDG using data from the [OpenAlex database](https://openalex.org/).
 
 We begin with a sample of 800 most-cited articles for each Sustainable Development Goal (SDG), based on query keywords associated with the 17 SDGs, covering the period from 2016 to 2024. Novelty is calculated using methods for assessing rarity (Commonness) developed by Lee et al. (2015) (`get_novelty.py`). Additionally, we plan to process spatial data to uncover information about local novelties and clusters (`get_location.py`).
 
@@ -149,12 +149,12 @@ We are using a lightweight version of the **Novelpy** package developed by Kevin
 
 Clone this repository on your local machine :
 ```
-git clone https://github.com/valentinb67/Novelty-components-of-scientific-productions
+git clone https://github.com/valentinb67/Novelty-components-of-scientific-productions-for-each-SDG
 ```
 
 **Navigate to the project directory and install the dependencies :**
 ```
-cd Novelty-components-of-scientific-productions
+cd Novelty-components-of-scientific-productions-for-each-SDG
 pip install -r requirements.txt
 ```
 To run the application use:
