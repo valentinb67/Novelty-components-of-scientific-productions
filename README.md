@@ -11,7 +11,7 @@ We begin with a sample of 800 most-cited articles for each Sustainable Developme
 │   Novelty.pbix
 │   README.md
 │   requirements.txt
-│   __init__.py
+│   main.py
 │
 ├───DataFrames_loc
 │       DF_Climate Action.csv
@@ -159,5 +159,5 @@ pip install -r requirements.txt
 ```
 To run the application use:
 ```
-python run_scripts.py
+python main.py
 ```
